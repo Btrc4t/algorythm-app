@@ -55,7 +55,7 @@ public class PreferencesViewModel extends AndroidViewModel {
         if (node == null) return;
         node.setPrefs(prefs);
 
-        CoapResponse coapResponse = mRepository.putCoapUpdate(node, Mode.ENDPOINT);
+        CoapResponse coapResponse = mRepository.putCoapUpdate(node, Prefs.ENDPOINT);
         checkCoapResponseAndUpdate(node, coapResponse);
     }
 }
