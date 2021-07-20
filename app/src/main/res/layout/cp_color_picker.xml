@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.madrapps.pikolo.HSLColorPicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        pikolo:lightness_indicator_stroke_width="0dp"
+        pikolo:arc_length="110"
+        pikolo:hue_start_angle="30"
+        pikolo:lightness_start_angle="270"
+        pikolo:radius_offset="20dp"
+        pikolo:saturation_indicator_stroke_color="@color/primary"
+        pikolo:saturation_start_angle="150"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:pikolo="http://schemas.android.com/apk/res-auto"/>

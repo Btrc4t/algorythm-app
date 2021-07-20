@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Algorythm</string>
+    <string name="bottom_menu_nodes">Nodes</string>
+    <string name="bottom_menu_control">Control</string>
+    <string name="bottom_menu_preferences">Preferences</string>
+    <string name="nodes_header">NODES</string>
+    <string name="no_node_selected">No node selected</string>
+    <string name="mode_select">Mode:</string>
+</resources>

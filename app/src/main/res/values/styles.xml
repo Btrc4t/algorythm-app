@@ -1,0 +1,22 @@
+<resources>
+    <style name="DosisHeading">
+        <item name="android:textSize">@dimen/text_size_35sp</item>
+        <item name="android:textColor">@color/secondary</item>
+        <item name="android:fontFamily">@font/dosis_book_font</item>
+    </style>
+
+    <style name="DosisDropDownItem">
+        <item name="android:background">@color/primary</item>
+        <item name="android:textSize">@dimen/text_size_24sp</item>
+        <item name="android:textColor">@color/secondary</item>
+        <item name="android:fontFamily">@font/dosis_book_font</item>
+    </style>
+
+    <style name="DosisTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/dosis_book_font</item>
+    </style>
+
+    <style name="DosisButtonStyle" parent="android:Widget.Holo.Button">
+        <item name="android:fontFamily">@font/dosis_medium_font</item>
+    </style>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="layout_margin_all_8dp">8dp</dimen>
+    <dimen name="layout_padding_all_4dp">4dp</dimen>
+    <dimen name="layout_margin_all_16dp">16dp</dimen>
+    <dimen name="layout_padding_all_6dp">6dp</dimen>
+    <dimen name="layout_padding_all_16dp">16dp</dimen>
+    <dimen name="layout_size_30dp">30dp</dimen>
+    <dimen name="layout_size_60dp">60dp</dimen>
+    <dimen name="layout_size_300dp">300dp</dimen>
+    <dimen name="text_size_18sp">18sp</dimen>
+    <dimen name="text_size_24sp">24sp</dimen>
+    <dimen name="text_size_35sp">35sp</dimen>
+    <dimen name="list_item_row_height">60dp</dimen>
+    <dimen name="drop_down_item_row_height">20dp</dimen>
+
+</resources>

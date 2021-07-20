@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.buttercat.algorythmhub.viewmodel.PreferencesViewModel" />
+        <variable
+            name="prefs"
+            type="com.buttercat.algorythmhub.model.definitions.Prefs" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".view.NodeListFragment">
+
+        <LinearLayout
+                android:id="@id/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/layout_padding_all_16dp"
+                android:paddingBottom="@dimen/layout_padding_all_16dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                    android:id="@+id/heading_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/no_node_selected"
+                    android:textAppearance="@style/DosisHeading"/>
+
+
+        </LinearLayout>
+
+
+        <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/layout_margin_all_8dp"
+                android:layout_marginStart="@dimen/layout_margin_all_8dp"
+                android:layout_marginTop="48dp"
+                android:padding="@dimen/layout_padding_all_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heading">
+            <LinearLayout
+                    android:id="@id/content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center|top">
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amplitude lower threshold"/>
+                    <EditText
+                            android:id="@+id/edit_amp_min"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Amplitude lower threshold"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amplitude upper threshold"/>
+                    <EditText
+                            android:id="@+id/edit_amp_max"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Amplitude upper threshold"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frequency range blue start"/>
+                    <EditText
+                            android:id="@+id/edit_freq_b_start"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Frequency range blue start"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frequency range blue end"/>
+                    <EditText
+                            android:id="@+id/edit_freq_b_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Frequency range blue end"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frequency range green end"/>
+                    <EditText
+                            android:id="@+id/edit_freq_g_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Frequency range green end"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Frequency range red end"/>
+                    <EditText
+                            android:id="@+id/edit_freq_r_end"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Frequency range red end"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/layout_padding_all_16dp">
+
+                    <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Audio hold mode intensity"/>
+                    <EditText
+                            android:id="@+id/edit_hold_mode_int"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:autofillHints="Audio hold mode intensity"
+                            android:inputType="number"/>
+                </LinearLayout>
+
+                <Button
+                        android:id="@+id/update_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Update"
+                        android:backgroundTint="@color/primaryDark"
+                        android:textColor="@color/primary"
+                        android:onClick="@{() -> model.updatePreferences(prefs)}"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

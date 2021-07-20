@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- TODO check if using these vectors is obligation free -->
+    <item
+        android:id="@+id/nav_nodes_list"
+        android:icon="@drawable/ic_baseline_account_tree_24"
+        android:title="@string/bottom_menu_nodes" />
+    <item
+        android:id="@+id/nav_control_panel"
+        android:icon="@drawable/ic_baseline_cable_24"
+        android:title="@string/bottom_menu_control" />
+
+    <item
+        android:id="@+id/nav_preferences"
+        android:icon="@drawable/ic_baseline_analytics_24"
+        android:title="@string/bottom_menu_preferences" />
+
+</menu>

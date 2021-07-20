@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="model"
+            type="com.buttercat.algorythmhub.viewmodel.NodeListViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.NodeListFragment">
+
+        <LinearLayout
+                android:id="@id/heading"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/layout_padding_all_16dp"
+                android:paddingBottom="@dimen/layout_padding_all_16dp"
+                android:orientation="horizontal"
+                app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/nodes_header"
+                    android:textAppearance="@style/DosisHeading"/>
+
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/nodeList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/layout_margin_all_8dp"
+                android:layout_marginStart="@dimen/layout_margin_all_8dp"
+                android:padding="@dimen/layout_padding_all_16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/heading"
+                app:setAdapter="@{model.getAdapter()}"
+                android:layout_marginTop="48dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
