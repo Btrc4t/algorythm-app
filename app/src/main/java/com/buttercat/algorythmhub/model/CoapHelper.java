@@ -5,6 +5,7 @@ import android.util.Log;
 import com.buttercat.algorythmhub.model.definitions.Color;
 import com.buttercat.algorythmhub.model.definitions.ESP32Node;
 import com.buttercat.algorythmhub.model.definitions.Mode;
+import com.buttercat.algorythmhub.model.definitions.Prefs;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
 
@@ -84,6 +85,24 @@ public class CoapHelper {
                         node.getColor().getGreen(),
                         node.getColor().getBlue()
                 }, APPLICATION_OCTET_STREAM);
+            } else if (endpoint.contentEquals(Prefs.ENDPOINT)) {
+                byte[] prefBytes = {
+                        (byte) (node.getPrefs().getAmpMin() & 0xFF),
+                        (byte) (node.getPrefs().getAmpMin() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getAmpMax() & 0xFF),
+                        (byte) (node.getPrefs().getAmpMax() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getFreqBlueStart() & 0xFF),
+                        (byte) (node.getPrefs().getFreqBlueStart() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getFreqBlueEnd() & 0xFF),
+                        (byte) (node.getPrefs().getFreqBlueEnd() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getFreqGreenEnd() & 0xFF),
+                        (byte) (node.getPrefs().getFreqGreenEnd() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getFreqRedEnd() & 0xFF),
+                        (byte) (node.getPrefs().getFreqRedEnd() >> 8 & 0xFF),
+                        (byte) (node.getPrefs().getAudioHoldIntensity() & 0xFF),
+                        (byte) (node.getPrefs().getAudioHoldIntensity() >> 8 & 0xFF),
+                };
+                return mCoapClient.put(prefBytes, APPLICATION_OCTET_STREAM);
             } else {
                 Log.e(TAG, "putEndpoint: invalid endpoint: " + endpoint);
                 return null;

@@ -58,4 +58,10 @@ public class PreferencesViewModel extends AndroidViewModel {
         CoapResponse coapResponse = mRepository.putCoapUpdate(node, Prefs.ENDPOINT);
         checkCoapResponseAndUpdate(node, coapResponse);
     }
+
+    public Prefs getPrefs() {
+        ESP32Node node = getSelectedNode();
+        if (node == null || node.getPrefs() == null) return new Prefs();
+        return node.getPrefs();
+    }
 }

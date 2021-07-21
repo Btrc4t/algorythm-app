@@ -1,10 +1,14 @@
 package com.buttercat.algorythmhub.view;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -70,10 +74,19 @@ public class PreferencesFragment extends Fragment {
         mViewModel = new ViewModelProvider(this).get(PreferencesViewModel.class);
         mBinding.setLifecycleOwner(this);
         mBinding.setModel(mViewModel);
-        mPreferences = new Prefs();
+        mPreferences = mViewModel.getPrefs();
+        mBinding.setPrefs(mPreferences);
 
-        mBinding.editAmpMin.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editAmpMin.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int ampMin = Integer.parseInt(mBinding.editAmpMin.getText().toString());
                 if (ampMin >= mPreferences.getAmpMax() || ampMin > AMP_THRESH_MIN_VALUE_MAX) {
                     mBinding.editAmpMin.setText(String.valueOf(mPreferences.getAmpMin()));
@@ -83,8 +96,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editAmpMax.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editAmpMax.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int ampMax = Integer.parseInt(mBinding.editAmpMax.getText().toString());
                 if (ampMax > AMP_THRESH_MAX_VALUE_MAX) {
                     mBinding.editAmpMax.setText(String.valueOf(mPreferences.getAmpMax()));
@@ -94,8 +115,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editFreqBStart.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editFreqBStart.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int freqBStart = Integer.parseInt(mBinding.editFreqBStart.getText().toString());
                 if (freqBStart > (FREQ_MAX-3)) {
                     mBinding.editFreqBStart.setText(String.valueOf(mPreferences.getFreqBlueStart()));
@@ -105,8 +134,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editFreqBEnd.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editFreqBEnd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int freqBEnd = Integer.parseInt(mBinding.editFreqBEnd.getText().toString());
                 if (freqBEnd > (FREQ_MAX-2) || freqBEnd <= mPreferences.getFreqBlueStart() ) {
                     mBinding.editFreqBEnd.setText(String.valueOf(mPreferences.getFreqBlueStart()));
@@ -116,8 +153,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editFreqGEnd.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editFreqGEnd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int freqGEnd = Integer.parseInt(mBinding.editFreqGEnd.getText().toString());
                 if (freqGEnd > (FREQ_MAX-1) || freqGEnd <= mPreferences.getFreqBlueEnd() ) {
                     mBinding.editFreqGEnd.setText(String.valueOf(mPreferences.getFreqGreenEnd()));
@@ -127,8 +172,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editFreqREnd.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editFreqREnd.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int freqREnd = Integer.parseInt(mBinding.editFreqREnd.getText().toString());
                 if (freqREnd > (FREQ_MAX-1) || freqREnd <= mPreferences.getFreqGreenEnd() ) {
                     mBinding.editFreqREnd.setText(String.valueOf(mPreferences.getFreqRedEnd()));
@@ -138,8 +191,16 @@ public class PreferencesFragment extends Fragment {
             }
         });
 
-        mBinding.editHoldModeInt.setOnFocusChangeListener((v, hasFocus) -> {
-            if (!hasFocus) {
+        mBinding.editHoldModeInt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) return;
                 int holdModeInt = Integer.parseInt(mBinding.editHoldModeInt.getText().toString());
                 if (holdModeInt > COLOR_INTENSITY_MAX || holdModeInt <=0 ) {
                     mBinding.editHoldModeInt.setText(String.valueOf(mPreferences.getAudioHoldIntensity()));
@@ -156,6 +217,7 @@ public class PreferencesFragment extends Fragment {
             return;
         }
         if (mViewModel.checkConnection(selectedNode)) {
+            if (selectedNode.getPrefs() == null) mViewModel.updatePreferences(mPreferences);
             mBinding.headingTitle.setText(selectedNode.getRoom());
             mBinding.editAmpMin.setText(String.valueOf(selectedNode.getPrefs().getAmpMin()));
             mBinding.editAmpMax.setText(String.valueOf(selectedNode.getPrefs().getAmpMax()));

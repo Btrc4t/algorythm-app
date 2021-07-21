@@ -1,8 +1,11 @@
 package com.buttercat.algorythmhub.view;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.util.ArrayMap;
 import android.util.Log;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 menuChangeTransaction.hide(fragment);
             }
         }
+        hideKeyboard();
         menuChangeTransaction.commit();
         return true;
     };
@@ -78,6 +82,17 @@ public class MainActivity extends AppCompatActivity {
             mainActivityBinding.navigation.setSelectedItemId(R.id.nav_control_panel);
         });
         mainActivityBinding.navigation.setOnItemSelectedListener(mOnNavigationListener);
+    }
+
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) this.getSystemService(Activity.INPUT_METHOD_SERVICE);
+        //Find the currently focused view, so we can grab the correct window token from it.
+        View view = this.getCurrentFocus();
+        //If no view currently has focus, create a new one, just so we can grab a window token from it
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
 
     @Override

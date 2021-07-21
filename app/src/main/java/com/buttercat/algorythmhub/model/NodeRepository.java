@@ -151,9 +151,6 @@ public class NodeRepository {
                 mNodeList.set(n, node);
                 mLiveNodesList.postValue(mNodeList);
             }
-            if (mLiveNodeClicked.getValue() != null && node.getHostName().contentEquals(mLiveNodeClicked.getValue().getHostName())) {
-                mLiveNodeClicked.postValue(node);
-            }
         }
     }
 
