@@ -1,7 +1,6 @@
 package com.buttercat.algorythmhub.view;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +17,9 @@ import com.buttercat.algorythmhub.model.definitions.Mode;
 import com.buttercat.algorythmhub.viewmodel.ControlPanelViewModel;
 import com.madrapps.pikolo.HSLColorPicker;
 import com.madrapps.pikolo.listeners.OnColorSelectionListener;
+import timber.log.Timber;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,7 +27,6 @@ import java.util.List;
  * {@link com.buttercat.algorythmhub.view.utils.NodeListViewAdapter}
  */
 public class ControlPanelFragment extends Fragment {
-    private static final String TAG = ControlPanelFragment.class.getSimpleName();
     /**
      * The databinding class which takes care of inflating the fragment
      */
@@ -68,7 +66,7 @@ public class ControlPanelFragment extends Fragment {
     }
 
     private void initFragment() {
-        Log.d("TAG", "onViewCreated: ControlPanelFragment ");
+        Timber.d("onViewCreated: ControlPanelFragment ");
         mViewModel = new ViewModelProvider(this).get(ControlPanelViewModel.class);
         mControlPanelFragmentBinding.setLifecycleOwner(this);
         // mControlPanelFragmentBinding.setModel(mViewModel);
@@ -93,7 +91,7 @@ public class ControlPanelFragment extends Fragment {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                Log.i(TAG, "onNothingSelected");
+                Timber.i("onNothingSelected");
             }
         });
 

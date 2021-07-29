@@ -5,6 +5,7 @@ import com.buttercat.algorythmhub.model.AppExecutors;
 import com.buttercat.algorythmhub.model.CoapHelper;
 import com.buttercat.algorythmhub.model.NodeRepository;
 import com.buttercat.algorythmhub.model.NodeLookupHelper;
+import timber.log.Timber;
 
 /**
  * Android Application class. Used for accessing singletons.
@@ -20,6 +21,7 @@ public class BasicApp extends Application {
     public void onCreate() {
         super.onCreate();
         mAppExecutors = new AppExecutors();
+        Timber.plant(new Timber.DebugTree());
     }
 
     /**
@@ -48,14 +50,5 @@ public class BasicApp extends Application {
     public NodeRepository getRepository() {
         return NodeRepository.getInstance(getNodeLookupHelper(), getCoapHelper());
     }
-
-    /*
-     * Getter for the {@link AppExecutors}
-     *
-     * @return the {@link AppExecutors} used throughout the application to execute background tasks
-
-    public AppExecutors getAppExecutors(){
-        return mAppExecutors;
-    }*/
 }
 

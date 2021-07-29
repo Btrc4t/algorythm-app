@@ -1,15 +1,12 @@
 package com.buttercat.algorythmhub.model;
 
-import android.content.Context;
-import android.util.Log;
 import com.buttercat.algorythmhub.model.definitions.Color;
 import com.buttercat.algorythmhub.model.definitions.ESP32Node;
 import com.buttercat.algorythmhub.model.definitions.Mode;
 import com.buttercat.algorythmhub.model.definitions.Prefs;
 import org.eclipse.californium.core.CoapClient;
 import org.eclipse.californium.core.CoapResponse;
-
-import java.util.concurrent.*;
+import timber.log.Timber;
 
 import static org.eclipse.californium.core.coap.MediaTypeRegistry.APPLICATION_OCTET_STREAM;
 
@@ -19,7 +16,6 @@ public class CoapHelper {
      * Singleton instance of this class
      */
     private static CoapHelper sInstance;
-    private static final String TAG = CoapHelper.class.getSimpleName();
     private boolean mUsesDtls;
     private CoapClient mCoapClient;
 
@@ -54,18 +50,19 @@ public class CoapHelper {
             //TODO configure DTLS Client
         }
 
-        Log.d(TAG, "COAP configured");
+        Timber.d( "COAP configured");
+
     }
 
     public CoapResponse queryEndpoint(ESP32Node node, String endpoint) {
 
         try {
             String uri = (mUsesDtls ? "coaps" : "coap") + "://" + node.getAddress() + (mUsesDtls ? ":5684" : ":5683") + "/" + endpoint;
-            Log.i(TAG, "queryEndpoint: querying "+uri);
+            Timber.i("queryEndpoint: querying %s", uri);
             mCoapClient.setURI(uri);
             return mCoapClient.get();
         } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage(), ex);
+            Timber.e(ex);
             return null;
         }
     }
@@ -74,7 +71,7 @@ public class CoapHelper {
 
         try {
             String uri = (mUsesDtls ? "coaps" : "coap") + "://" + node.getAddress() + (mUsesDtls ? ":5684" : ":5683") + "/" + endpoint;
-            Log.i(TAG, "putEndpoint: posting " + uri);
+            Timber.i("putEndpoint: posting %s", uri);
             mCoapClient.setURI(uri);
 
             if (endpoint.contentEquals(Mode.ENDPOINT)) {
@@ -104,12 +101,12 @@ public class CoapHelper {
                 };
                 return mCoapClient.put(prefBytes, APPLICATION_OCTET_STREAM);
             } else {
-                Log.e(TAG, "putEndpoint: invalid endpoint: " + endpoint);
+                Timber.e("putEndpoint: invalid endpoint: %s", endpoint);
                 return null;
             }
 
         } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage(), ex);
+            Timber.e(ex);
             return null;
         }
 
@@ -118,11 +115,11 @@ public class CoapHelper {
     public Boolean ping(ESP32Node node) {
         try {
             String uri = (mUsesDtls ? "coaps" : "coap") + "://" + node.getAddress() + (mUsesDtls ? ":5684" : ":5683") + "/";
-            Log.i(TAG, "ping: " + uri);
+            Timber.i("ping: %s", uri);
             mCoapClient.setURI(uri);
             return mCoapClient.ping();
         } catch (Exception ex) {
-            Log.e(TAG, ex.getMessage(), ex);
+            Timber.e(ex);
             return false;
         }
     }

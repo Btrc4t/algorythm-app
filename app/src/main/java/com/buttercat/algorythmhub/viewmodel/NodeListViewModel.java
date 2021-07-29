@@ -21,9 +21,9 @@ public class NodeListViewModel extends AndroidViewModel {
      * An adapter used by the {@link RecyclerView} through
      * databinding, using {@link #getAdapter()}
      */
-    private NodeListViewAdapter myRecyclerViewAdapter;
+    private final NodeListViewAdapter myRecyclerViewAdapter;
 
-    private NodeRepository mRepository;
+    private final NodeRepository mRepository;
 
     /**
      * Constructor for this {@link AndroidViewModel} which has an instance of the {@link NodeRepository}

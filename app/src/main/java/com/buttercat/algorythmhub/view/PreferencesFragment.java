@@ -3,12 +3,9 @@ package com.buttercat.algorythmhub.view;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -18,13 +15,13 @@ import com.buttercat.algorythmhub.databinding.PreferencesFragmentBinding;
 import com.buttercat.algorythmhub.model.definitions.ESP32Node;
 import com.buttercat.algorythmhub.model.definitions.Prefs;
 import com.buttercat.algorythmhub.viewmodel.PreferencesViewModel;
+import timber.log.Timber;
 
 /**
  * A custom {@link Fragment} which shows the
  * {@link com.buttercat.algorythmhub.view.utils.NodeListViewAdapter}
  */
 public class PreferencesFragment extends Fragment {
-    private static final String TAG = PreferencesFragment.class.getSimpleName();
     /**
      * The databinding class which takes care of inflating the fragment
      */
@@ -70,7 +67,7 @@ public class PreferencesFragment extends Fragment {
     }
 
     private void initFragment() {
-        Log.d("TAG", "onViewCreated: PreferencesFragment ");
+        Timber.d("onViewCreated: PreferencesFragment ");
         mViewModel = new ViewModelProvider(this).get(PreferencesViewModel.class);
         mBinding.setLifecycleOwner(this);
         mBinding.setModel(mViewModel);

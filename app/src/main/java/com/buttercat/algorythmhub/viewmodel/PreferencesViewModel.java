@@ -1,26 +1,23 @@
 package com.buttercat.algorythmhub.viewmodel;
 
 import android.app.Application;
-import android.util.Log;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.recyclerview.widget.RecyclerView;
 import com.buttercat.algorythmhub.BasicApp;
 import com.buttercat.algorythmhub.model.NodeRepository;
-import com.buttercat.algorythmhub.model.definitions.Color;
 import com.buttercat.algorythmhub.model.definitions.ESP32Node;
-import com.buttercat.algorythmhub.model.definitions.Mode;
 import com.buttercat.algorythmhub.model.definitions.Prefs;
 import com.buttercat.algorythmhub.view.NodeListFragment;
 import com.buttercat.algorythmhub.view.utils.NodeListViewAdapter;
 import org.eclipse.californium.core.CoapResponse;
+import timber.log.Timber;
 
 /**
  * An {@link AndroidViewModel} for the {@link NodeListFragment}
  */
 public class PreferencesViewModel extends AndroidViewModel {
 
-    private static final String TAG = PreferencesViewModel.class.getSimpleName();
-    private NodeRepository mRepository;
+    private final NodeRepository mRepository;
 
     /**
      * Constructor for this {@link AndroidViewModel} which has an instance of the {@link NodeRepository}
@@ -42,7 +39,7 @@ public class PreferencesViewModel extends AndroidViewModel {
         if (response != null && response.isSuccess()) {
             mRepository.updateNodeInList(node);
         } else {
-            Log.e(TAG, "updateSelectedNodeMode: null CoapResponse or other failure");
+            Timber.e("updateSelectedNodeMode: null CoapResponse or other failure");
         }
     }
 

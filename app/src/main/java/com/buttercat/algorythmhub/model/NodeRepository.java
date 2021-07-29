@@ -1,6 +1,5 @@
 package com.buttercat.algorythmhub.model;
 
-import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -9,29 +8,23 @@ import com.buttercat.algorythmhub.model.definitions.ESP32Node;
 import com.buttercat.algorythmhub.model.definitions.Mode;
 import com.buttercat.algorythmhub.model.definitions.Prefs;
 import org.eclipse.californium.core.CoapResponse;
+import timber.log.Timber;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
 
 /**
  * A repository which provides access to nodes discovered on the network
  */
 public class NodeRepository {
-
-    private static final String TAG = NodeRepository.class.getSimpleName();
     /**
      * Singleton instance of this class
      */
     private static NodeRepository sInstance;
-    private static NodeLookupHelper mNodeLookupHelper;
     private final CoapHelper mCoapHelper;
-    private MediatorLiveData<List<ESP32Node>> mLiveNodesList;
+    private final MediatorLiveData<List<ESP32Node>> mLiveNodesList;
     private List<ESP32Node> mNodeList = new ArrayList<>();
-    private MutableLiveData<ESP32Node> mLiveNodeClicked;
+    private final MutableLiveData<ESP32Node> mLiveNodeClicked;
 
     /**
      * Default constructor which links the {@link NodeLookupHelper} and {@link CoapHelper}
@@ -41,7 +34,6 @@ public class NodeRepository {
      */
     private NodeRepository(final NodeLookupHelper nodeLookupHelper, CoapHelper coapHelper) {
         mCoapHelper = coapHelper;
-        mNodeLookupHelper = nodeLookupHelper;
         mLiveNodesList = new MediatorLiveData<>();
         mLiveNodeClicked = new MutableLiveData<>();
         mLiveNodesList.addSource(nodeLookupHelper.getNodesLiveData(), esp32Node -> {
@@ -55,7 +47,7 @@ public class NodeRepository {
 
             CoapResponse modeResponse = mCoapHelper.queryEndpoint(esp32Node, Mode.ENDPOINT);
             if (modeResponse == null) {
-                Log.e(TAG, "NodeRepository: null mode endpoint response");
+                Timber.e("NodeRepository: null mode endpoint response");
                 return;
             }
             Mode mode = Mode.fromInt(modeResponse.getPayload()[0]);
@@ -68,7 +60,7 @@ public class NodeRepository {
             updateNodeInList(esp32Node);
         });
 
-        mNodeLookupHelper.startDiscovery();
+        nodeLookupHelper.startDiscovery();
     }
 
     /**
@@ -131,10 +123,9 @@ public class NodeRepository {
             for (int b = 0; b < prefBytes.length; b+=2) {
                 preferences[b/2] = (((((int) prefBytes[b+1]) & 0xff) << 8)
                         | (((int) prefBytes[b]) & 0xff));
-                // Log.i(TAG, "getNodePrefs: b["+(b/2)+"] = "+preferences[b/2]);
             }
         } else {
-            Log.e(TAG, "getNodePrefs: got an unexpected size from the node: "+(prefBytes.length/2));
+            Timber.e("getNodePrefs: got an unexpected size from the node: %s", (prefBytes.length/2));
         }
         prefs = new Prefs(preferences);
         return prefs;

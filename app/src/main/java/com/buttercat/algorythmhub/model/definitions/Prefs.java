@@ -2,13 +2,12 @@ package com.buttercat.algorythmhub.model.definitions;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.util.Log;
+import timber.log.Timber;
 
 /**
  * Preferences for the {@link ESP32Node}
  */
 public class Prefs implements Parcelable {
-    private static final String TAG = Prefs.class.getSimpleName();
     private int mAmpMin = 350;
     private int mAmpMax = 1650;
     private int mFreqBlueStart = 300;
@@ -31,7 +30,7 @@ public class Prefs implements Parcelable {
 
     public Prefs(int[] prefs) { // these are the defaults
         if (prefs.length != 7) {
-            Log.e(TAG, "Prefs: Invalid array length: " +prefs.length);
+            Timber.e("Prefs: Invalid array length: " +prefs.length);
             return;
         }
         this.mAmpMin = prefs[0];
