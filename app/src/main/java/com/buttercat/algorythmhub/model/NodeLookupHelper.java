@@ -66,6 +66,7 @@ public class NodeLookupHelper implements LifecycleOwner {
         mResolveListener = new NsdManager.ResolveListener() {
             @Override
             public void onResolveFailed(NsdServiceInfo serviceInfo, int errorCode) {
+                resolverAvailable.postValue(true);
                 Timber.d("onResolveFailed");
             }
 
@@ -79,6 +80,7 @@ public class NodeLookupHelper implements LifecycleOwner {
                 Timber.d("onServiceResolved: Service Type: %s", serviceInfo.getServiceType());
                 if (!serviceInfo.getServiceName().startsWith(SERVICE_NAME)) {
                     Timber.d("Found unrelated service: %s", serviceInfo.getServiceName());
+                    resolverAvailable.postValue(true);
                     return;
                 }
                 String room = "Undefined";
@@ -95,7 +97,6 @@ public class NodeLookupHelper implements LifecycleOwner {
                 resolverAvailable.postValue(true);
             }
         };
-
 
         resolverAvailable.observe(this, available -> {
             if (available == null) {
@@ -132,10 +133,8 @@ public class NodeLookupHelper implements LifecycleOwner {
                 Timber.d("Service discovery success: %s", service);
                 if (service.getServiceType().equals(SERVICE_TYPE)) {
                     servicesToResolveQueue.add(service);
+                    resolverAvailable.postValue(resolverAvailable.getValue());
                 }
-                // re-trigger resolver!
-                Timber.d("about to post resolver value "+resolverAvailable.getValue());
-                resolverAvailable.postValue(resolverAvailable.getValue());
             }
 
             @Override
@@ -144,6 +143,7 @@ public class NodeLookupHelper implements LifecycleOwner {
                 // Internal bookkeeping code goes here.
                 Timber.e("service lost: %s", service);
                 mNodesLiveData.postValue(null);
+                resolverAvailable.postValue(resolverAvailable.getValue());
             }
 
             @Override
