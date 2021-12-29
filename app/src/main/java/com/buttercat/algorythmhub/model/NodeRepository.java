@@ -137,11 +137,17 @@ public class NodeRepository {
             mLiveNodesList.postValue(mNodeList);
             return;
         }
+        int modified = 0;
         for (int n = 0; n < mNodeList.size(); n++) { // lists will always be short, is it worth optimizing?
             if (node.getHostName().contentEquals(mNodeList.get(n).getHostName())) {
                 mNodeList.set(n, node);
                 mLiveNodesList.postValue(mNodeList);
+                modified += 1;
             }
+        }
+        if (modified == 0) {
+            mNodeList.add(node);
+            mLiveNodesList.postValue(mNodeList);
         }
     }
 
